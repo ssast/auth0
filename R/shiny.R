@@ -41,7 +41,7 @@ auth0_ui <- function(ui, info) {
         info$state
       )
       if (!verify) {
-        if (grepl("error=unauthorized", req$QUERY_STRING)) {
+        if (grepl("error=unauthorized", req$QUERY_STRING) || grepl("error=access_denied", req$QUERY_STRING)) {
           redirect <- sprintf("location.replace(\"%s\");", logout_url())
           shiny::tags$script(shiny::HTML(redirect))
         } else {
