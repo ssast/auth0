@@ -31,7 +31,7 @@ auth0_server_verify <- function(session, app, api, state) {
       , httr::config(token = token)
       , times = 5
     )
-
+    assign("auth0_token", token, envir = session$userData)
     assign("auth0_credentials", token$credentials, envir = session$userData)
     assign("auth0_info", httr::content(resp, "parsed"), envir = session$userData)
   }
